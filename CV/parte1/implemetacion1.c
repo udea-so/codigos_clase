@@ -5,7 +5,7 @@
 #include "mythreads.h"
 
 /*
-gcc -Wall -lpthread -o ejemplo2 -I. ejemplo2.c
+gcc -Wall -lpthread -o implementacion1.c -I. implementacion1.c
 */
 
 int done = 0;
@@ -31,11 +31,16 @@ int main(int argc, char *argv[]) {
 
 // Definiciones de las funciones
 
+void thr_join(void) {
+  pthread_mutex_lock(&m);      // x
+  pthread_cond_wait(&c, &m);   // y
+  pthread_mutex_unlock(&m);    // z
+}
+
 void thr_exit(void) {
-  Pthread_mutex_lock(&m);
-  done = 1;
-  Pthread_cond_signal(&c);
-  Pthread_mutex_unlock(&m);
+  pthread_mutex_lock(&m);      // a
+  pthread_cond_signal(&c);     // b
+  pthread_mutex_unlock(&m);    // c 
 }
 
 void *child(void *arg) {
@@ -44,10 +49,4 @@ void *child(void *arg) {
   return NULL;
 }
 
-void thr_join(void) {
-  Pthread_mutex_lock(&m);
-  while (done == 0) {
-	  Pthread_cond_wait(&c, &m);
-  }
-  Pthread_mutex_unlock(&m);
-}
+
