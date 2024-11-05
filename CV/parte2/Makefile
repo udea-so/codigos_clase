@@ -1,14 +1,23 @@
-
+# Definición de variables
+CC = gcc             # Compilador
+CFLAGS = -Wall -g    # Opciones de compilación (avisos, depuración)
+SOURCES = $(wildcard *.c)    # Todos los archivos .c en el directorio actual
+OBJECTS = $(SOURCES:.c=.o)   # Los archivos objeto generados a partir de .c
+EXECUTABLES = $(SOURCES:.c=) # Ejecutables generados, uno por cada archivo fuente
 FLAGS = -Wall -pthread
 INCLUDES = .
 
-all: main1 main2
+# Regla para compilar todo
+all: $(EXECUTABLES)
 
+# Regla genérica para compilar cada archivo .c en un ejecutable
+$(EXECUTABLES): % : %.o
+	$(CC) $(CFLAGS) -o $@ $<
+
+# Regla genérica para compilar cada archivo .c en un archivo .o
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+# Limpiar archivos objeto y ejecutables generados
 clean:
-	rm -f main1 main2
-
-t0: t0.c
-	gcc -I $(INCLUDES) -o t0 t0.c $(FLAGS)
-
-t1: t1.c
-	gcc -I $(INCLUDES) -o t1 t1.c $(FLAGS)
+	rm -f $(OBJECTS) $(EXECUTABLES)
