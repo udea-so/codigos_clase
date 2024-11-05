@@ -1,10 +1,9 @@
 # Definición de variables
-CC = gcc             # Compilador
-CFLAGS = -Wall -g    # Opciones de compilación (avisos, depuración)
+CC = gcc                     # Compilador
+CFLAGS = -Wall -pthread      # Opciones de compilación (avisos, hilos)
 SOURCES = $(wildcard *.c)    # Todos los archivos .c en el directorio actual
 OBJECTS = $(SOURCES:.c=.o)   # Los archivos objeto generados a partir de .c
 EXECUTABLES = $(SOURCES:.c=) # Ejecutables generados, uno por cada archivo fuente
-FLAGS = -Wall -pthread
 INCLUDES = .
 
 # Regla para compilar todo
