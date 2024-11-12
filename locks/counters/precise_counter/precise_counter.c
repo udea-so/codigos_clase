@@ -10,7 +10,7 @@
 #define NUM_THREADS 16
 
 /*
-gcc -Wall -I. precise_counter.c -lpthread -o precise_counter.out 
+gcc -Wall -I../include precise_counter.c -lpthread -o precise_counter 
 */
 
 int real_value = 0;
