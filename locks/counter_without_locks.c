@@ -5,12 +5,12 @@
 #include "common_threads.h"
 #include "counter.h"
 
+#define CNT_END 1000000
+#define NUM_THREADS 16
+
 /*
 gcc -Wall -I. counter_without_locks.c -lpthread -o counter_without_locks.out 
 */
-
-#define CNT_END 1000000
-#define NUM_THREADS 4
 
 int real_value = 0;
 counter_t cnt;
@@ -37,9 +37,10 @@ int main() {
   for (i = 0; i < NUM_THREADS; i++) {
     pthread_join(tid[i], NULL);
   }
-  t_end = GetTime();
+  t_end = GetTime(); // Marca de tiempo final
+
   printf("-> Tiempo gastado: %lf seg\n", t_end - t_ini);
-  printf("-> El contador debe quedar en:%d\n", NUM_THREADS * CNT_END);
+  printf("-> El contador debe quedar en: %d\n", NUM_THREADS * CNT_END);
   printf("-> El valor real del contador es: %d\n", get(&cnt));
   return 0;
 }
