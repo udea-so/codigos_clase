@@ -2,9 +2,9 @@
 
 ## Locks
 
-* Counter without locks ([link](./counters/sin_locks/))
-* Precise counter (with locks) ([link](./counters/con_locks/))
-* Approximate counter ([link](./counters/aproximados/))
+* Counter without locks ([link](./counters/counter_without_locks/))
+* Precise counter (with locks) ([link](./counters/precise_counter/))
+* Approximate counter ([link](./counters/sloppy_counter/))
 
 ToDo:
 * Verificar la version del contador aproximado.
