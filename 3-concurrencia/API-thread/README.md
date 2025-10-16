@@ -166,3 +166,9 @@ Este esquema muestra cómo la memoria se asigna y cómo los punteros viajan entr
 | `free(m);` | `[ El bloque de memoria se libera ]` |
 | **Fin del programa** | |
 
+## Referencias
+
+* https://hpc-tutorials.llnl.gov/posix/
+* https://beej.us/guide/bggdb/
+* https://sourceware.org/glibc/manual/
+* https://man7.org/linux/man-pages/man3/pthread_create.3.html
